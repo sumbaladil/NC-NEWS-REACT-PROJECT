@@ -1,0 +1,90 @@
+.jumbotron {
+  background-image: url("Presentaion.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0.6;
+}
+
+.my-nav-link {
+  padding: 10px;
+  margin: 10px;
+  /* border-radius: 5px; */
+  border-radius: 15px;
+  background-color: #b5b5b7;
+  color: #252839;
+  font-size: 1em;
+}
+
+.my-nav-link:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #677077;
+}
+
+.my-nav-link:active {
+  color: #00bcdf;
+}
+
+.my-card {
+  margin: 50px;
+  border-radius: 15px;
+}
+
+.text-centre {
+  text-align: center;
+}
+
+.user {
+  width: 30%;
+}
+
+.user-comment {
+  width: 10%;
+}
+
+.article-writer {
+  width: 5%;
+}
+
+.title-header {
+  color: #00bcdf;
+}
+
+.title-header:hover {
+  text-decoration: none;
+  color: #252839;
+}
+
+.card {
+  margin: 20px auto;
+}
+
+.jumbotron-heading {
+  font-size: 5em;
+  color: black;
+}
+
+.btn-lg {
+  display: block;
+  margin-left: 80%;
+}
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-article {
+  width: 20%;
+}
+.color-grey {
+  color: grey;
+}
+.color-blue {
+  color: #00bcdf;
+}
+
+.sort-button {
+  margin: 6px;
+}
