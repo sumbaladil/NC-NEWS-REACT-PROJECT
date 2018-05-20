@@ -29,8 +29,21 @@ class Home extends Component {
         <div className="jumbotron">
           <p>
             <br />
+            <br />
           </p>
-          <h1 className="jumbotron-heading">Welcome to Northcoders News</h1>
+          <h1 className="jumbotron-heading">
+            <div>
+              <h1>
+                <a href="https://northcoders.com/">
+                  <img
+                    id="nc-logo"
+                    src="logo.png"
+                    alt="Northcoders logo image"
+                  />
+                </a>
+              </h1>
+            </div>
+          </h1>
           <a className="btn btn-info btn-lg" href="#" role="button">
             Register with us
           </a>

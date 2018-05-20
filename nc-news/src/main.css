@@ -5,6 +5,12 @@
   background-position: center center;
   opacity: 0.6;
 }
+#nc-logo {
+  margin-top: 1.5% !important;
+  display: block;
+  max-width: 8%;
+  max-height: 10%;
+}
 
 .my-nav-link {
   padding: 10px;

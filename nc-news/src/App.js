@@ -6,7 +6,6 @@ import Users from "./components/Users";
 import Topics from "./components/Topics";
 import Comments from "./components/Comments";
 import Header from "./components/Header";
-
 import NotFound from "./components/NotFound";
 import { Route, Switch } from "react-router-dom";
 
