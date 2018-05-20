@@ -8,7 +8,6 @@ class Topics extends Component {
   };
 
   componentDidMount() {
-    console.log("component did mount");
     return axios
       .get(
         `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
@@ -26,7 +25,6 @@ class Topics extends Component {
           `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
         )
         .then(response => {
-          console.log(response.data);
           this.setState({ topics: response.data.articles });
         });
     }
@@ -36,7 +34,7 @@ class Topics extends Component {
     const { topics } = this.state;
     return (
       <div>
-        <p>Topics</p>
+        <h1>Topics</h1>
         {topics.map((topic, i) => {
           const { title, _id } = topic;
 

@@ -34,7 +34,7 @@ class Users extends Component {
     const { users } = this.state;
     return (
       <div>
-        <h1 className="text-centre">Users</h1>
+        <h1>Users</h1>
         {users.map((user, i) => {
           const { username, name, avatar_url } = user;
           return (

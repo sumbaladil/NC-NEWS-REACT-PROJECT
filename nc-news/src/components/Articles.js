@@ -10,7 +10,7 @@ class Articles extends Component {
       title: "",
       body: "",
       created_by: "",
-      topic: ""
+      topic: "coding"
     },
     topics: {
       coding: "5ae309fef1ad7b2cf6a3afcd",
@@ -149,10 +149,18 @@ class Articles extends Component {
                   <div id="vote-up-down">
                     <h5>
                       votes: <button>{votes}</button>
-                      <button id={_id} onClick={this.voteUpOrDown}>
+                      <button
+                        className="btn btn-secondary"
+                        id={_id}
+                        onClick={this.voteUpOrDown}
+                      >
                         ⇑
                       </button>
-                      <button id={_id} onClick={this.voteUpOrDown}>
+                      <button
+                        className="btn btn-secondary"
+                        id={_id}
+                        onClick={this.voteUpOrDown}
+                      >
                         ⇓
                       </button>
                     </h5>
@@ -200,8 +208,10 @@ class Articles extends Component {
     });
   };
 
+  //when users selects a topic from drop down
   addTopic = event => {
     let topicName = event.target.innerText;
+    console.log(event.target.innerText);
     this.setState({
       newArticle: {
         ...this.state.newArticle,
@@ -211,6 +221,7 @@ class Articles extends Component {
     });
   };
 
+  // when user add article title
   articleTitle = event => {
     this.setState({
       newArticle: {
@@ -220,6 +231,7 @@ class Articles extends Component {
     });
   };
 
+  // when user adds body of article
   articleBody = event => {
     this.setState({
       newArticle: {
@@ -229,9 +241,9 @@ class Articles extends Component {
     });
   };
 
+  // when user submits an article
   addArticle = event => {
     event.preventDefault();
-    // this.setState({ ...this.state,  });
     const topicid = this.state.newArticle.topic;
 
     const newObj = {
@@ -259,7 +271,9 @@ class Articles extends Component {
       })
       .catch(err => {
         console.log(err);
-        alert("Article cannot be posted");
+        alert(
+          "Oopss....Article cannot be posted, check if you have added all the information"
+        );
       });
   };
 
@@ -284,18 +298,12 @@ class Articles extends Component {
         });
 
         this.setState({ articles: updatedArray, comment: "" });
-        console.log(res.data);
       })
       .catch(err => {
         console.log(err);
-        let updatedArray = this.state.articles.map(article => {
-          if (article._id === id) {
-            article.comments -= 1;
-          }
-          return article;
-        });
-
-        this.setState({ articles: updatedArray, comment: "" });
+        alert(
+          "Sorry, comment cannot be add, please check if you have entered any comment"
+        );
       });
   };
 
@@ -323,14 +331,8 @@ class Articles extends Component {
         });
       })
       .catch(err => {
-        let updatedArray = this.state.articles.map(article => {
-          if (article._id === id) {
-            upOrDown === "up" ? (article.votes -= 1) : (article.votes += 1);
-          }
-          return article;
-        });
-
-        this.setState({ articles: updatedArray });
+        console.log(err);
+        alert("Vote is not updated, please try again later");
       });
   };
 }
