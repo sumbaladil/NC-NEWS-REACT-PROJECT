@@ -107,6 +107,18 @@ class Articles extends Component {
         {this.state.addAnArticle === false ? (
           <div>
             <h1>Articles</h1>
+            <button
+              className="btn btn-secondary"
+              onClick={this.sortArticlesbyComments}
+            >
+              sort by comments
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={this.sortArticlesbyVotes}
+            >
+              sort by votes
+            </button>
             <button className="btn btn-secondary" onClick={this.handleClick}>
               Share an article with us
             </button>
@@ -334,6 +346,20 @@ class Articles extends Component {
         console.log(err);
         alert("Vote is not updated, please try again later");
       });
+  };
+
+  sortArticlesbyComments = event => {
+    const sortedArticles = this.state.articles.sort((a, b) => {
+      return b.comments - a.comments;
+    });
+    this.setState({ articles: sortedArticles });
+  };
+
+  sortArticlesbyVotes = event => {
+    const sortedArticles = this.state.articles.sort((a, b) => {
+      return b.votes - a.votes;
+    });
+    this.setState({ articles: sortedArticles });
   };
 }
 
