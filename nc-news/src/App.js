@@ -6,6 +6,8 @@ import Users from "./components/Users";
 import Topics from "./components/Topics";
 import Comments from "./components/Comments";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 import NotFound from "./components/NotFound";
 import { Route, Switch } from "react-router-dom";
 
@@ -71,6 +73,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/" component={NotFound} />
         </Switch>
+        <Footer />
       </div>
     );
   }
