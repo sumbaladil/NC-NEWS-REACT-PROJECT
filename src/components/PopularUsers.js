@@ -26,7 +26,7 @@ class PopularUsers extends Component {
 
                   <p className="card-text">
                     <small className="text-muted">
-                      Posted by: <strong>{name}</strong>
+                      <strong>{name}</strong>
                     </small>
                     <Link to={`/users`}>
                       <img
