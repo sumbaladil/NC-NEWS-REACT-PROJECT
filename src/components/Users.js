@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { getAllUsers } from "./api";
 
 class Users extends Component {
   state = {
@@ -7,26 +7,22 @@ class Users extends Component {
   };
 
   componentDidMount() {
-    return axios
-      .get(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-      )
-      .then(response => {
-        const users = response.data;
-        this.setState(users);
-      });
+    return getAllUsers(
+      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+    ).then(response => {
+      const users = response.data;
+      this.setState(users);
+    });
   }
 
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
-      return axios
-        .get(
-          `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-        )
-        .then(response => {
-          const users = response.data;
-          this.setState(users);
-        });
+      return getAllUsers(
+        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      ).then(response => {
+        const users = response.data;
+        this.setState(users);
+      });
     }
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { getAllArticles, postAnArticle, postAComment, updateVote } from "./api";
 
 class Articles extends Component {
   state = {
@@ -23,10 +23,9 @@ class Articles extends Component {
   };
 
   componentDidMount() {
-    return axios
-      .get(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-      )
+    return getAllArticles(
+      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+    )
       .then(response => {
         const articles = response.data;
 
@@ -41,10 +40,9 @@ class Articles extends Component {
 
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
-      return axios
-        .get(
-          `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-        )
+      return getAllArticles(
+        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      )
         .then(response => {
           const articles = response.data;
           this.setState({
@@ -90,13 +88,13 @@ class Articles extends Component {
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="" onClick={this.addTopic}>
+                  <a className="dropdown-item" href="#" onClick={this.addTopic}>
                     coding
                   </a>
-                  <a className="dropdown-item" href="" onClick={this.addTopic}>
+                  <a className="dropdown-item" href="#" onClick={this.addTopic}>
                     football
                   </a>
-                  <a className="dropdown-item" href="" onClick={this.addTopic}>
+                  <a className="dropdown-item" href="#" onClick={this.addTopic}>
                     cooking
                   </a>
                 </div>
@@ -274,11 +272,10 @@ class Articles extends Component {
       created_by: this.state.newArticle.created_by
     };
 
-    axios
-      .post(
-        `https://northcoders-news-1.herokuapp.com/api/topics/${topicid}/articles`,
-        newObj
-      )
+    return postAnArticle(
+      `https://northcoders-news-1.herokuapp.com/api/topics/${topicid}/articles`,
+      newObj
+    )
       .then(response => {
         this.setState({
           articles: [response.data.articles[0], ...this.state.articles],
@@ -306,11 +303,10 @@ class Articles extends Component {
       created_by: this.props.user
     };
 
-    axios
-      .post(
-        `https://northcoders-news-1.herokuapp.com/api/articles/${id}/comments`,
-        newComment
-      )
+    return postAComment(
+      `https://northcoders-news-1.herokuapp.com/api/articles/${id}/comments`,
+      newComment
+    )
       .then(res => {
         let updatedArray = this.state.articles.map(article => {
           if (article._id === id) {
@@ -336,10 +332,10 @@ class Articles extends Component {
   voteUpOrDown = event => {
     let upOrDown = event.target.innerText === "⇑" ? "up" : "down";
     let id = event.target.id;
-    axios
-      .put(
-        `https://northcoders-news-1.herokuapp.com/api/articles/${id}?vote=${upOrDown}`
-      )
+
+    return updateVote(
+      `https://northcoders-news-1.herokuapp.com/api/articles/${id}?vote=${upOrDown}`
+    )
       .then(res => {
         let updatedArray = this.state.articles.map(article => {
           if (article._id === id) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { getAllComments, updateVote, deleteComment } from "./api";
 
 class Comments extends Component {
   state = {
@@ -7,24 +7,20 @@ class Comments extends Component {
   };
 
   componentDidMount() {
-    return axios
-      .get(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-      )
-      .then(response => {
-        this.setState({ comments: response.data.comments.reverse() });
-      });
+    return getAllComments(
+      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+    ).then(response => {
+      this.setState({ comments: response.data.comments.reverse() });
+    });
   }
 
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
-      return axios
-        .get(
-          `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-        )
-        .then(response => {
-          this.setState({ comments: response.data.comments.reverse() });
-        });
+      return getAllComments(
+        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      ).then(response => {
+        this.setState({ comments: response.data.comments.reverse() });
+      });
     }
   }
 
@@ -98,10 +94,9 @@ class Comments extends Component {
   voteUpOrDown = event => {
     let upOrDown = event.target.innerText === "⇑" ? "up" : "down";
     let id = event.target.id;
-    axios
-      .put(
-        `https://northcoders-news-1.herokuapp.com/api/comments/${id}?vote=${upOrDown}`
-      )
+    return updateVote(
+      `https://northcoders-news-1.herokuapp.com/api/comments/${id}?vote=${upOrDown}`
+    )
       .then(res => {
         let updatedArray = this.state.comments.map(comment => {
           if (comment._id === id) {
@@ -118,9 +113,9 @@ class Comments extends Component {
   };
   handleClick = event => {
     const id = event.target.id;
-
-    axios
-      .delete(`https://northcoders-news-1.herokuapp.com/api/comments/${id}`)
+    return deleteComment(
+      `https://northcoders-news-1.herokuapp.com/api/comments/${id}`
+    )
       .then(res => {
         let updatedArray = this.state.comments.filter(comment => {
           if (comment._id !== id) {

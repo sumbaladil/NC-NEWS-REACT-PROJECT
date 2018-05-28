@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { getAllTopics } from "./api";
+
 import axios from "axios";
 
 class Topics extends Component {
@@ -8,25 +10,21 @@ class Topics extends Component {
   };
 
   componentDidMount() {
-    return axios
-      .get(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-      )
-      .then(response => {
-        const topics = response.data;
-        this.setState(topics);
-      });
+    return getAllTopics(
+      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+    ).then(response => {
+      const topics = response.data;
+      this.setState(topics);
+    });
   }
 
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
-      return axios
-        .get(
-          `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
-        )
-        .then(response => {
-          this.setState({ topics: response.data.articles });
-        });
+      return getAllTopics(
+        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      ).then(response => {
+        this.setState({ topics: response.data.articles });
+      });
     }
   }
 

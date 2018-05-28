@@ -12,7 +12,9 @@ class Home extends Component {
   componentDidMount = () => {
     return getAllArticles(
       `https://northcoders-news-1.herokuapp.com/api/articles`
-    ).then(articles => {
+    ).then(response => {
+      const articles = response.data;
+
       let sortedArticles = articles.articles.sort(function(a, b) {
         return b.votes - a.votes;
       });
