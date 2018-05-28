@@ -15,7 +15,6 @@
 .my-nav-link {
   padding: 10px;
   margin: 10px;
-  /* border-radius: 5px; */
   border-radius: 15px;
   background-color: #b5b5b7;
   color: #252839;
@@ -104,4 +103,8 @@
 
 .card-footer {
   margin-top: 100px;
+}
+
+#vote-up-down {
+  margin-left: 30px;
 }

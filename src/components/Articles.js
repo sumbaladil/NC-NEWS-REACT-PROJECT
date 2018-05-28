@@ -17,7 +17,9 @@ class Articles extends Component {
       cooking: "5ae309fef1ad7b2cf6a3afcf",
       football: "5ae309fef1ad7b2cf6a3afce"
     },
-    addAnArticle: false
+    addAnArticle: false,
+    sortByVotes: true,
+    error: false
   };
 
   componentDidMount() {
@@ -27,7 +29,13 @@ class Articles extends Component {
       )
       .then(response => {
         const articles = response.data;
-        this.setState(articles);
+
+        this.setState({
+          articles: this.sortArticles(articles.articles, "votes")
+        });
+      })
+      .catch(err => {
+        this.setState({ error: true });
       });
   }
 
@@ -39,10 +47,13 @@ class Articles extends Component {
         )
         .then(response => {
           const articles = response.data;
-          this.setState(articles);
+          this.setState({
+            articles: this.sortArticles(articles.articles, "votes")
+          });
         })
         .catch(err => {
           console.log(err);
+          this.setState({ error: true });
         });
     }
   }
@@ -61,7 +72,7 @@ class Articles extends Component {
                   className="form-control"
                   id="article-title"
                   placeholder="My new Artice"
-                  onChange={this.articleTitle}
+                  onChange={this.changeArticleTitle}
                 />
               </div>
               <div className="dropdown">
@@ -79,13 +90,13 @@ class Articles extends Component {
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuButton"
                 >
-                  <a className="dropdown-item" href="#" onClick={this.addTopic}>
+                  <a className="dropdown-item" href="" onClick={this.addTopic}>
                     coding
                   </a>
-                  <a className="dropdown-item" href="#" onClick={this.addTopic}>
+                  <a className="dropdown-item" href="" onClick={this.addTopic}>
                     football
                   </a>
-                  <a className="dropdown-item" href="#" onClick={this.addTopic}>
+                  <a className="dropdown-item" href="" onClick={this.addTopic}>
                     cooking
                   </a>
                 </div>
@@ -110,12 +121,14 @@ class Articles extends Component {
             <button
               className="btn btn-secondary"
               onClick={this.sortArticlesbyComments}
+              disabled={!this.state.sortByVotes}
             >
               sort by comments
             </button>
             <button
               className="btn btn-secondary"
               onClick={this.sortArticlesbyVotes}
+              disabled={this.state.sortByVotes}
             >
               sort by votes
             </button>
@@ -147,6 +160,7 @@ class Articles extends Component {
                     <img
                       className="article-writer"
                       src={avatar_url}
+                      alt=""
                       onError={event =>
                         event.target.setAttribute(
                           "src",
@@ -220,7 +234,6 @@ class Articles extends Component {
     });
   };
 
-  //when users selects a topic from drop down
   addTopic = event => {
     let topicName = event.target.innerText;
     console.log(event.target.innerText);
@@ -233,8 +246,7 @@ class Articles extends Component {
     });
   };
 
-  // when user add article title
-  articleTitle = event => {
+  changeArticleTitle = event => {
     this.setState({
       newArticle: {
         ...this.state.newArticle,
@@ -243,7 +255,6 @@ class Articles extends Component {
     });
   };
 
-  // when user adds body of article
   articleBody = event => {
     this.setState({
       newArticle: {
@@ -253,7 +264,6 @@ class Articles extends Component {
     });
   };
 
-  // when user submits an article
   addArticle = event => {
     event.preventDefault();
     const topicid = this.state.newArticle.topic;
@@ -348,18 +358,25 @@ class Articles extends Component {
       });
   };
 
+  sortArticles = (articles, sortBy) => {
+    const sortedArticles = articles.sort((a, b) => {
+      return sortBy === "votes" ? b.votes - a.votes : b.comments - a.comments;
+    });
+    return sortedArticles;
+  };
+
   sortArticlesbyComments = event => {
     const sortedArticles = this.state.articles.sort((a, b) => {
       return b.comments - a.comments;
     });
-    this.setState({ articles: sortedArticles });
+    this.setState({ articles: sortedArticles, sortByVotes: false });
   };
 
   sortArticlesbyVotes = event => {
     const sortedArticles = this.state.articles.sort((a, b) => {
       return b.votes - a.votes;
     });
-    this.setState({ articles: sortedArticles });
+    this.setState({ articles: sortedArticles, sortByVotes: true });
   };
 }
 

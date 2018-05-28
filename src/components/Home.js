@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-
 import { getAllArticles } from "./api";
 import PopularArticles from "./PopularArticles";
 import PopularUsers from "./PopularUsers";
+
 class Home extends Component {
   state = {
     users: [],
@@ -18,22 +16,20 @@ class Home extends Component {
       let sortedArticles = articles.articles.sort(function(a, b) {
         return b.votes - a.votes;
       });
-
       const users = this.UsersArticles(articles);
-      //console.log(users);
       let sortedUsers = users.sort(function(a, b) {
         return b.articles - a.articles;
       });
-      //console.log(sortedUsers);
+
       this.setState({
         articles: sortedArticles.slice(0, 3),
         users: sortedUsers.slice(0, 3)
       });
     });
   };
-  render() {
-    const { articles } = this.state;
 
+  render() {
+    const { articles, users } = this.state;
     return (
       <div>
         <div className="jumbotron">
@@ -45,28 +41,19 @@ class Home extends Component {
             <div>
               <h1>
                 <a href="https://northcoders.com/">
-                  <img
-                    id="nc-logo"
-                    src="logo.png"
-                    alt="Northcoders logo image"
-                  />
+                  <img id="nc-logo" src="logo.png" alt="" />
                 </a>
               </h1>
             </div>
           </h1>
-          <a className="btn btn-info btn-lg" href="#" role="button">
-            Register with us
-          </a>
         </div>
-        <PopularArticles
-          articles={this.state.articles}
-          onClick={this.handleClick}
-        />
+        <PopularArticles articles={articles} onClick={this.handleClick} />
         <hr />
-        <PopularUsers users={this.state.users} />
+        <PopularUsers users={users} />
       </div>
     );
   }
+
   handleClick = event => {
     const sort = event.target.innerText;
     const sortedArray =
@@ -79,6 +66,7 @@ class Home extends Component {
           });
     this.setState({ articles: sortedArray.slice(0, 3) });
   };
+
   UsersArticles = articles => {
     const userObj = articles.articles.reduce((acc, article) => {
       const {

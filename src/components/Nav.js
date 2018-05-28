@@ -50,26 +50,7 @@ class Nav extends Component {
                 </NavLink>
               </button>
             </li>
-            {/* <li className="nav-item">
-              <button className="nav-link my-nav-link">
-                <NavLink className="my-nav-link" to="/articles">
-                  Add an article
-                </NavLink>
-              </button>
-            </li> */}
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="text"
-              placeholder="User name"
-              aria-label="user"
-            />
-
-            <button className="btn btn-outline-info my-2 my-sm-0" type="submit">
-              Log In
-            </button>
-          </form>
         </div>
       </nav>
     );

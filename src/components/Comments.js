@@ -12,7 +12,7 @@ class Comments extends Component {
         `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
       )
       .then(response => {
-        this.setState({ comments: response.data.comments });
+        this.setState({ comments: response.data.comments.reverse() });
       });
   }
 
@@ -23,7 +23,7 @@ class Comments extends Component {
           `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
         )
         .then(response => {
-          this.setState({ comments: response.data.comments });
+          this.setState({ comments: response.data.comments.reverse() });
         });
     }
   }
@@ -33,7 +33,7 @@ class Comments extends Component {
     return (
       <div>
         <p>Comments</p>
-        {comments.reverse().map((comment, i) => {
+        {comments.map((comment, i) => {
           const {
             created_at,
             votes,

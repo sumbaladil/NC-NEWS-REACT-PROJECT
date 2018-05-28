@@ -9,7 +9,7 @@ class PopularUsers extends Component {
         <h1>Most Active users</h1>
         <div className="card-deck bg-light">
           {users.map((user, i) => {
-            const { username, name, avatar_url, articles } = user;
+            const { name, avatar_url, articles } = user;
             return (
               <div key={name} className="card my-card">
                 <div className="card-body">

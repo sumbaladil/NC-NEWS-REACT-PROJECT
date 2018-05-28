@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 class PopularArticles extends Component {
+  state = {
+    sortedByVotes: true
+  };
   render() {
     const { articles } = this.props;
     return (
@@ -9,12 +12,14 @@ class PopularArticles extends Component {
           Popular Articles
           <button
             className="btn btn-warning sort-button"
+            disabled={this.state.sortedByVotes}
             onClick={this.handleClick}
           >
             by Votes
           </button>
           <button
             className="btn btn-warning sort-button"
+            disabled={!this.state.sortedByVotes}
             onClick={this.handleClick}
           >
             by Comments
@@ -81,6 +86,7 @@ class PopularArticles extends Component {
     );
   }
   handleClick = event => {
+    this.setState({ sortedByVotes: !this.state.sortedByVotes });
     this.props.onClick(event);
   };
 }
