@@ -1,16 +1,28 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class NotFound extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.history.push("/");
-    }, 2000);
+    }, 5000);
   }
   render() {
-    console.log(this.props.history);
     return (
-      <div className="404">
-        <p>404</p>
+      <div className="text-centre">
+        <h1>Page Not Found</h1>
+        <p>Sorry, there is nothing to see here.</p>
+        <span>
+          <strong>Let's go back to home page</strong>
+        </span>
+        <div>
+          <Link to="/">
+            <img
+              src="http://www.clker.com/cliparts/W/G/Q/p/R/h/cartoon-house-hi.png"
+              width="100px"
+            />
+          </Link>
+        </div>
       </div>
     );
   }

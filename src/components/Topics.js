@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { getAllTopics } from "../api";
-import axios from "axios";
 import PropTypes from "prop-types";
 
 class Topics extends Component {

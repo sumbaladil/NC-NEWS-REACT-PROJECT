@@ -8,7 +8,7 @@ class Header extends Component {
           <small className="text-muted">Created by Sumbal Adil</small>
           <div>
             <small className="text-muted">
-              <a href="https://www.linkedin.com/in/sumbal-adil">
+              <a href="https://www.linkedin.com/in/sumbal-adil" target="_blank">
                 Visit my Linkedin profile
               </a>
             </small>

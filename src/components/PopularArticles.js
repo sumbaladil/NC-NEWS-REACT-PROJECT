@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 class PopularArticles extends Component {
   state = {
     sortedByVotes: true
@@ -34,7 +35,7 @@ class PopularArticles extends Component {
               votes,
               comments,
               belongs_to: { slug },
-              created_by: { _id: user, name, avatar_url }
+              created_by: { name, avatar_url }
             } = article;
 
             return (

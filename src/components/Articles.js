@@ -146,7 +146,7 @@ class Articles extends Component {
                 votes,
                 comments,
                 belongs_to: { slug },
-                created_by: { _id: user, name, avatar_url }
+                created_by: { name, avatar_url }
               } = article;
 
               return (
