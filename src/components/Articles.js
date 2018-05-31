@@ -148,14 +148,18 @@ class Articles extends Component {
               <button
                 className="btn btn-secondary"
                 onClick={this.sortArticlesbyComments}
-                disabled={!this.state.sortByVotes}
+                disabled={
+                  !this.state.sortByVotes || this.state.articles.length === 1
+                }
               >
                 sort by comments
               </button>
               <button
                 className="btn btn-secondary"
                 onClick={this.sortArticlesbyVotes}
-                disabled={this.state.sortByVotes}
+                disabled={
+                  this.state.sortByVotes || this.state.articles.length === 1
+                }
               >
                 sort by votes
               </button>

@@ -1,59 +1,73 @@
 import React, { Component } from "react";
 import { getAllArticles } from "../api";
+import NotFound from "./NotFound";
 import PopularArticles from "./PopularArticles";
 import PopularUsers from "./PopularUsers";
 
 class Home extends Component {
   state = {
     users: [],
-    articles: []
+    articles: [],
+    error: false
   };
 
   componentDidMount = () => {
     return getAllArticles(
       `https://northcoders-news-1.herokuapp.com/api/articles`
-    ).then(response => {
-      const articles = response.data;
+    )
+      .then(response => {
+        const articles = response.data;
 
-      let sortedArticles = articles.articles.sort(function(a, b) {
-        return b.votes - a.votes;
-      });
-      const users = this.UsersArticles(articles);
-      let sortedUsers = users.sort(function(a, b) {
-        return b.articles - a.articles;
-      });
+        let sortedArticles = articles.articles.sort(function(a, b) {
+          return b.votes - a.votes;
+        });
+        const users = this.UsersArticles(articles);
+        let sortedUsers = users.sort(function(a, b) {
+          return b.articles - a.articles;
+        });
 
-      this.setState({
-        articles: sortedArticles.slice(0, 3),
-        users: sortedUsers.slice(0, 3)
+        this.setState({
+          articles: sortedArticles.slice(0, 3),
+          users: sortedUsers.slice(0, 3)
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ error: true });
       });
-    });
   };
 
   render() {
-    const { articles, users } = this.state;
-    return (
-      <div>
-        <div className="jumbotron">
-          <p>
-            <br />
-            <br />
-          </p>
-          <h1 className="jumbotron-heading">
-            <div>
-              <h1>
-                <a href="https://northcoders.com/">
-                  <img id="nc-logo" src="logo.png" alt="" />
-                </a>
-              </h1>
-            </div>
-          </h1>
+    const { articles, users, error } = this.state;
+    if (error)
+      return (
+        <div>
+          <NotFound {...this.props} />
         </div>
-        <PopularArticles articles={articles} onClick={this.handleClick} />
-        <hr />
-        <PopularUsers users={users} />
-      </div>
-    );
+      );
+    else
+      return (
+        <div>
+          <div className="jumbotron">
+            <p>
+              <br />
+              <br />
+            </p>
+            <h1 className="jumbotron-heading">
+              <div>
+                <h1>
+                  <a href="https://northcoders.com/">
+                    <img id="nc-logo" src="logo.png" alt="" />
+                  </a>
+                </h1>
+              </div>
+            </h1>
+          </div>
+          <PopularArticles articles={articles} onClick={this.handleClick} />
+          <hr />
+          <PopularUsers users={users} />
+        </div>
+      );
   }
 
   handleClick = event => {
