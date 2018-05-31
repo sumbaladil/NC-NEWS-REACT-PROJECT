@@ -12,9 +12,6 @@ class NotFound extends Component {
       <div className="text-centre">
         <h1>Page Not Found</h1>
         <p>Sorry, there is nothing to see here.</p>
-        <span>
-          <strong>Let's go back to home page</strong>
-        </span>
         <div>
           <Link to="/">
             <img
@@ -23,6 +20,9 @@ class NotFound extends Component {
             />
           </Link>
         </div>
+        <span>
+          <strong>Let's go back to home page</strong>
+        </span>
       </div>
     );
   }
