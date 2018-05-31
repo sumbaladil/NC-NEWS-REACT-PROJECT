@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { getAllTopics } from "../api";
-
 import axios from "axios";
+import PropTypes from "prop-types";
 
 class Topics extends Component {
   state = {
@@ -59,4 +59,7 @@ class Topics extends Component {
   }
 }
 
+Topics.propTypes = {
+  match: PropTypes.object
+};
 export default Topics;

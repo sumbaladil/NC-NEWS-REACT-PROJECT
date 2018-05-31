@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getAllUsers } from "../api";
+import PropTypes from "prop-types";
 
 class Users extends Component {
   state = {
@@ -61,4 +62,7 @@ class Users extends Component {
   }
 }
 
+Users.propTypes = {
+  match: PropTypes.object
+};
 export default Users;

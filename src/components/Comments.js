@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getAllComments, updateVote, deleteComment } from "../api";
+import PropTypes from "prop-types";
 
 class Comments extends Component {
   state = {
@@ -28,7 +29,7 @@ class Comments extends Component {
     const { comments } = this.state;
     return (
       <div>
-        <p>Comments</p>
+        <h1>Comments</h1>
         {comments.map((comment, i) => {
           const {
             created_at,
@@ -133,5 +134,10 @@ class Comments extends Component {
       });
   };
 }
+
+Comments.propTypes = {
+  match: PropTypes.object,
+  user: PropTypes.string
+};
 
 export default Comments;

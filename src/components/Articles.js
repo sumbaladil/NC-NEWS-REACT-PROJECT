@@ -6,6 +6,7 @@ import {
   postAComment,
   updateVote
 } from "../api";
+import PropTypes from "prop-types";
 
 class Articles extends Component {
   state = {
@@ -376,4 +377,8 @@ class Articles extends Component {
   };
 }
 
+Articles.propTypes = {
+  match: PropTypes.object,
+  user: PropTypes.string
+};
 export default Articles;
