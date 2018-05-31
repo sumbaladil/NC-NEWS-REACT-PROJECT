@@ -7,7 +7,6 @@ import Topics from "./components/Topics";
 import Comments from "./components/Comments";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
 import NotFound from "./components/NotFound";
 import { Route, Switch } from "react-router-dom";
 
@@ -37,12 +36,14 @@ class App extends Component {
               return <Articles {...props} user={this.state.loggedInUser} />;
             }}
           />
+
           <Route
             path="/articles"
             render={props => {
               return <Articles {...props} user={this.state.loggedInUser} />;
             }}
           />
+
           <Route
             exact
             path="/users/:user_id"
@@ -50,6 +51,7 @@ class App extends Component {
               return <Users {...props} />;
             }}
           />
+
           <Route
             exact
             path="/users"
@@ -57,12 +59,14 @@ class App extends Component {
               return <Users {...props} />;
             }}
           />
+
           <Route
             path="/topics/:topic_id/articles"
             render={props => {
               return <Articles {...props} user={this.state.loggedInUser} />;
             }}
           />
+
           <Route
             exact
             path="/topics"
@@ -70,7 +74,9 @@ class App extends Component {
               return <Topics {...props} />;
             }}
           />
+
           <Route exact path="/" component={Home} />
+
           <Route path="/" component={NotFound} />
         </Switch>
         <Footer />

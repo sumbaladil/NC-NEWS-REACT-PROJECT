@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getAllUsers } from "./api";
+import { getAllUsers } from "../api";
 
 class Users extends Component {
   state = {
@@ -38,10 +38,8 @@ class Users extends Component {
               <img
                 className="card-img-top img-fluid"
                 onError={event =>
-                  event.target.setAttribute(
-                    "src",
-                    "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg"
-                  )
+                  (event.target.src =
+                    "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg")
                 }
                 src={avatar_url}
                 alt=""

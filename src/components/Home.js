@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getAllArticles } from "./api";
+import { getAllArticles } from "../api";
 import PopularArticles from "./PopularArticles";
 import PopularUsers from "./PopularUsers";
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getAllComments, updateVote, deleteComment } from "./api";
+import { getAllComments, updateVote, deleteComment } from "../api";
 
 class Comments extends Component {
   state = {

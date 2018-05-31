@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { getAllArticles, postAnArticle, postAComment, updateVote } from "./api";
+import {
+  getAllArticles,
+  postAnArticle,
+  postAComment,
+  updateVote
+} from "../api";
 
 class Articles extends Component {
   state = {
@@ -28,7 +33,6 @@ class Articles extends Component {
     )
       .then(response => {
         const articles = response.data;
-
         this.setState({
           articles: this.sortArticles(articles.articles, "votes")
         });
@@ -160,10 +164,8 @@ class Articles extends Component {
                       src={avatar_url}
                       alt=""
                       onError={event =>
-                        event.target.setAttribute(
-                          "src",
-                          "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg"
-                        )
+                        (event.target.src =
+                          "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg")
                       }
                     />
                   </div>
@@ -234,7 +236,6 @@ class Articles extends Component {
 
   addTopic = event => {
     let topicName = event.target.innerText;
-    console.log(event.target.innerText);
     this.setState({
       newArticle: {
         ...this.state.newArticle,
@@ -265,7 +266,6 @@ class Articles extends Component {
   addArticle = event => {
     event.preventDefault();
     const topicid = this.state.newArticle.topic;
-
     const newObj = {
       title: this.state.newArticle.title,
       body: this.state.newArticle.body,

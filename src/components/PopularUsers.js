@@ -34,10 +34,8 @@ class PopularUsers extends Component {
                         src={avatar_url}
                         alt=""
                         onError={event =>
-                          event.target.setAttribute(
-                            "src",
-                            "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg"
-                          )
+                          (event.target.src =
+                            "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg")
                         }
                       />
                     </Link>
