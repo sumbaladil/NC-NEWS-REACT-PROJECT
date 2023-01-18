@@ -31,7 +31,7 @@ class Articles extends Component {
 
   componentDidMount() {
     return getAllArticles(
-      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
     )
       .then(response => {
         const articles = response.data;
@@ -48,7 +48,7 @@ class Articles extends Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
       return getAllArticles(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+        `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
       )
         .then(response => {
           const articles = response.data;
@@ -302,7 +302,7 @@ class Articles extends Component {
     };
 
     return postAnArticle(
-      `https://northcoders-news-1.herokuapp.com/api/topics/${topicid}/articles`,
+      `https://nc-news-backend-project.onrender.com/api/topics/${topicid}/articles`,
       newObj
     )
       .then(response => {
@@ -333,7 +333,7 @@ class Articles extends Component {
     };
 
     return postAComment(
-      `https://northcoders-news-1.herokuapp.com/api/articles/${id}/comments`,
+      `https://nc-news-backend-project.onrender.com/api/articles/${id}/comments`,
       newComment
     )
       .then(res => {
@@ -363,7 +363,7 @@ class Articles extends Component {
     let id = event.target.id;
 
     return updateVote(
-      `https://northcoders-news-1.herokuapp.com/api/articles/${id}?vote=${upOrDown}`
+      `https://nc-news-backend-project.onrender.com/api/articles/${id}?vote=${upOrDown}`
     )
       .then(res => {
         let updatedArray = this.state.articles.map(article => {

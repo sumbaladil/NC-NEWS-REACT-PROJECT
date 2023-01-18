@@ -10,7 +10,7 @@ class Topics extends Component {
 
   componentDidMount() {
     return getAllTopics(
-      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
     ).then(response => {
       const topics = response.data;
       this.setState(topics);
@@ -20,7 +20,7 @@ class Topics extends Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
       return getAllTopics(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+        `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
       ).then(response => {
         this.setState({ topics: response.data.articles });
       });

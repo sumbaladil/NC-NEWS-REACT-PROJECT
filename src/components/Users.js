@@ -9,7 +9,7 @@ class Users extends Component {
 
   componentDidMount() {
     return getAllUsers(
-      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
     ).then(response => {
       const users = response.data;
       this.setState(users);
@@ -19,7 +19,7 @@ class Users extends Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
       return getAllUsers(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+        `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
       ).then(response => {
         const users = response.data;
         this.setState(users);

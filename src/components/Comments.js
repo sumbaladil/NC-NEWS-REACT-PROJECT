@@ -12,7 +12,7 @@ class Comments extends Component {
 
   componentDidMount() {
     return getAllComments(
-      `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+      `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
     )
       .then(response => {
         this.setState({ comments: response.data.comments.reverse() });
@@ -26,7 +26,7 @@ class Comments extends Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
       return getAllComments(
-        `https://northcoders-news-1.herokuapp.com/api${this.props.match.url}`
+        `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
       )
         .then(response => {
           this.setState({ comments: response.data.comments.reverse() });
@@ -119,7 +119,7 @@ class Comments extends Component {
     let upOrDown = event.target.innerText === "⇑" ? "up" : "down";
     let id = event.target.id;
     return updateVote(
-      `https://northcoders-news-1.herokuapp.com/api/comments/${id}?vote=${upOrDown}`
+      `https://nc-news-backend-project.onrender.com/api/comments/${id}?vote=${upOrDown}`
     )
       .then(res => {
         let updatedArray = this.state.comments.map(comment => {
@@ -139,7 +139,7 @@ class Comments extends Component {
   handleClick = event => {
     const id = event.target.id;
     return deleteComment(
-      `https://northcoders-news-1.herokuapp.com/api/comments/${id}`
+      `https://nc-news-backend-project.onrender.com/api/comments/${id}`
     )
       .then(res => {
         let updatedArray = this.state.comments.filter(comment => {

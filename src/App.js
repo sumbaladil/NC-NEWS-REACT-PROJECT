@@ -12,10 +12,9 @@ import { Route, Switch } from "react-router-dom";
 
 class App extends Component {
   state = {
-    loggedInUser: "5ae309fef1ad7b2cf6a3afc7"
-    //5ae309fef1ad7b2cf6a3afc8
-    //5ae309fef1ad7b2cf6a3afc9
-    //5ae309fef1ad7b2cf6a3afcc"
+    // Using a user id for guest user created in the database
+    // Todo: Add support for adding new user accounts
+    loggedInUser: "63c4700c35590378be54f843"
   };
   render() {
     return (

@@ -13,7 +13,7 @@ class Home extends Component {
 
   componentDidMount = () => {
     return getAllArticles(
-      `https://northcoders-news-1.herokuapp.com/api/articles`
+      `https://nc-news-backend-project.onrender.com/api/articles`
     )
       .then(response => {
         const articles = response.data;
