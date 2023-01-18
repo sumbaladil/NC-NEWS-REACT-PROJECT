@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NotFound from "./NotFound";
 import { Link } from "react-router-dom";
 import { getAllComments, updateVote, deleteComment } from "../api";
+import { backendApiBaseUrl } from "../config";
 import PropTypes from "prop-types";
 
 class Comments extends Component {
@@ -12,7 +13,7 @@ class Comments extends Component {
 
   componentDidMount() {
     return getAllComments(
-      `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
+      `${backendApiBaseUrl}${this.props.match.url}`
     )
       .then(response => {
         this.setState({ comments: response.data.comments.reverse() });
@@ -26,7 +27,7 @@ class Comments extends Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
       return getAllComments(
-        `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
+        `${backendApiBaseUrl}${this.props.match.url}`
       )
         .then(response => {
           this.setState({ comments: response.data.comments.reverse() });
@@ -119,7 +120,7 @@ class Comments extends Component {
     let upOrDown = event.target.innerText === "⇑" ? "up" : "down";
     let id = event.target.id;
     return updateVote(
-      `https://nc-news-backend-project.onrender.com/api/comments/${id}?vote=${upOrDown}`
+      `${backendApiBaseUrl}/comments/${id}?vote=${upOrDown}`
     )
       .then(res => {
         let updatedArray = this.state.comments.map(comment => {
@@ -139,7 +140,7 @@ class Comments extends Component {
   handleClick = event => {
     const id = event.target.id;
     return deleteComment(
-      `https://nc-news-backend-project.onrender.com/api/comments/${id}`
+      `${backendApiBaseUrl}/comments/${id}`
     )
       .then(res => {
         let updatedArray = this.state.comments.filter(comment => {

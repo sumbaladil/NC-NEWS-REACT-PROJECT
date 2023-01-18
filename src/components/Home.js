@@ -3,6 +3,7 @@ import { getAllArticles } from "../api";
 import NotFound from "./NotFound";
 import PopularArticles from "./PopularArticles";
 import PopularUsers from "./PopularUsers";
+import { backendApiBaseUrl } from "../config";
 
 class Home extends Component {
   state = {
@@ -13,7 +14,7 @@ class Home extends Component {
 
   componentDidMount = () => {
     return getAllArticles(
-      `https://nc-news-backend-project.onrender.com/api/articles`
+      `${backendApiBaseUrl}/articles`
     )
       .then(response => {
         const articles = response.data;

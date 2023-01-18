@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getAllUsers } from "../api";
+import { backendApiBaseUrl } from "../config";
 import PropTypes from "prop-types";
 
 class Users extends Component {
@@ -9,7 +10,7 @@ class Users extends Component {
 
   componentDidMount() {
     return getAllUsers(
-      `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
+      `${backendApiBaseUrl}${this.props.match.url}`
     ).then(response => {
       const users = response.data;
       this.setState(users);
@@ -19,7 +20,7 @@ class Users extends Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
       return getAllUsers(
-        `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
+        `${backendApiBaseUrl}${this.props.match.url}`
       ).then(response => {
         const users = response.data;
         this.setState(users);

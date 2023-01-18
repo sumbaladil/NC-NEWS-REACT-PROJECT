@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { getAllTopics } from "../api";
+import { backendApiBaseUrl } from "../config";
 import PropTypes from "prop-types";
 
 class Topics extends Component {
@@ -10,7 +11,7 @@ class Topics extends Component {
 
   componentDidMount() {
     return getAllTopics(
-      `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
+      `${backendApiBaseUrl}${this.props.match.url}`
     ).then(response => {
       const topics = response.data;
       this.setState(topics);
@@ -20,7 +21,7 @@ class Topics extends Component {
   componentDidUpdate(oldProps) {
     if (oldProps.match.url !== this.props.match.url) {
       return getAllTopics(
-        `https://nc-news-backend-project.onrender.com/api${this.props.match.url}`
+        `${backendApiBaseUrl}${this.props.match.url}`
       ).then(response => {
         this.setState({ topics: response.data.articles });
       });
