@@ -4,7 +4,7 @@ Northcoders News is a social news aggregation, web content rating, and discussio
 
 Northcoders News has articles which are divided into different topics. Each article has user curated ratings and can be up or down voted by the user. Users can also add comments about an article. Comments can also be up or down voted. A user can add comments and remove any comments which they have added.
 
-I have also built a functioning app at https://northcoders-news-react.herokuapp.com
+I have also built a functioning app at https://nc-news-frontend-project.onrender.com
 
 ### Technology
 
@@ -44,7 +44,7 @@ npm run start
 
 ### Deployment
 
-This project has been deployed on [Heroku](https://www.heroku.com). Here is the link https://northcoders-news-react.herokuapp.com
+This project has been deployed on [render](https://render.com). Here is the link https://nc-news-frontend-project.onrender.com
 
 ### Author & Developer
 
